@@ -16,33 +16,33 @@ generateBtn.addEventListener("click", writePassword);
 // Function to generate and pass password to webpage
 function generatePassword() {
   // Asking user input to determine characters in password
-  var passwordLength = window.prompt("Enter the length of the password you would like");
+  var passwordLength = window.prompt("Enter desired password length");
   //checking password length is a number between 8 and 128
   while(isNaN(passwordLength) || passwordLength<8 || passwordLength>128) {
     if (isNaN(passwordLength)) {
-        passwordLength = window.prompt("You did not enter a number, please enter the length of the password you would like");
+        passwordLength = window.prompt("Please enter the length of the password you would like as a number");
     } else {
-        passwordLength = window.prompt("The value you entered was not between 8 and 128, please enter the length of the password you would like");
+        passwordLength = window.prompt("The length of the password you would like must be between 8 and 128");
     }
   }
-  var specialCharDesicion = window.confirm("Would you like to include special characters?");
-  var numberDesicion = window.confirm("Would you like to include numbers?");
-  var lowercaseDesicion = window.confirm("Would you like to include lowercase letters?");
-  var uppercaseDesicion = window.confirm("Would you like to include uppercase letters?");
+  var specialCharChoice = window.confirm("Include special characters?");
+  var numberChoice = window.confirm("Include numbers?");
+  var lowercaseChoice = window.confirm("Include lowercase letters?");
+  var uppercaseChoice = window.confirm("Include uppercase letters?");
   // Checking at least one character type is chosen
-  while (!specialCharDesicion && !numberDesicion && !lowercaseDesicion && !uppercaseDesicion) {
-    specialCharDesicion = window.confirm("Would you like to include special characters?");
-    numberDesicion = window.confirm("Would you like to include numbers?");
-    lowercaseDesicion = window.confirm("Would you like to include lowercase letters?");
-    uppercaseDesicion = window.confirm("Would you like to include uppercase letters?");
+  while (!specialCharChoice && !numberChoice && !lowercaseChoice && !uppercaseChoice) {
+    specialCharChoice = window.confirm("Include special characters?");
+    numberChoice = window.confirm("Include numbers?");
+    lowercaseChoice = window.confirm("Include lowercase letters?");
+    uppercaseChoice = window.confirm("Include uppercase letters?");
   }
   // Using arrays and random numbers to generate a password through for loop
   var lowercaseArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
   var uppercaseArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   var numberArray = [0,1,2,3,4,5,6,7,8,9]
-  var specialCharString =  " \!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"; //33 items, index from 0-32
+  var specialCharString = "\!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"; //33 items, index from 0-32
 
-    if (uppercaseDesicion && lowercaseDesicion && numberDesicion && specialCharDesicion) {
+    if (uppercaseChoice && lowercaseChoice && numberChoice && specialCharChoice) {
       for (i=0; i<passwordLength; i++) {
         var arrayNum = getRandomInt(4);
         if (arrayNum == 0) {
@@ -66,7 +66,7 @@ function generatePassword() {
           }
         }
       }
-    } else if (uppercaseDesicion && lowercaseDesicion && numberDesicion) {
+    } else if (uppercaseChoice && lowercaseChoice && numberChoice) {
       for (i=0; i<passwordLength; i++) {
         var arrayNum = getRandomInt(3);
         if (arrayNum == 0) {
@@ -80,7 +80,7 @@ function generatePassword() {
           var word = word + numberArray[indexNum];
         }
       }
-    } else if (uppercaseDesicion && lowercaseDesicion && specialCharDesicion) {
+    } else if (uppercaseChoice && lowercaseChoice && specialCharChoice) {
       for (i=0; i<passwordLength; i++) {
         var arrayNum = getRandomInt(3);
         if (arrayNum == 0) {
@@ -101,33 +101,12 @@ function generatePassword() {
           }
         }
       }
-    } else if (uppercaseDesicion && numberDesicion && specialCharDesicion) {
+    } else if (uppercaseChoice && numberChoice && specialCharChoice) {
       for (i=0; i<passwordLength; i++) {
         var arrayNum = getRandomInt(3);
         if (arrayNum == 0) {
           var indexNum = getRandomInt(25);
           var word = word + uppercaseArray[indexNum];
-        } else if (arrayNum == 1) {
-          var indexNum = getRandomInt(10);
-          var word = word + numberArray[indexNum];
-        } else {
-          var indexNum = getRandomInt(33);
-          var character = specialCharString.charAt(indexNum);
-          if (character === "\!") {
-            var word = word + "\!";
-          } else if (character === "\"") {
-            var word = word + "\"";
-          } else {
-            var word = word + character;
-          }
-        }
-      }
-    } else if (lowercaseDesicion && numberDesicion && specialCharDesicion) {
-      for (i=0; i<passwordLength; i++) {
-        var arrayNum = getRandomInt(3);
-        if (arrayNum == 0) {
-          var indexNum = getRandomInt(25);
-          var word = word + lowercaseArray[indexNum];
         } else if (arrayNum == 1) {
           var indexNum = getRandomInt(10);
           var word = word + numberArray[indexNum];
@@ -143,7 +122,28 @@ function generatePassword() {
           }
         }
       }
-    } else if (uppercaseDesicion && lowercaseDesicion) {
+    } else if (lowercaseChoice && numberChoice && specialCharChoice) {
+      for (i=0; i<passwordLength; i++) {
+        var arrayNum = getRandomInt(3);
+        if (arrayNum == 0) {
+          var indexNum = getRandomInt(25);
+          var word = word + lowercaseArray[indexNum];
+        } else if (arrayNum == 1) {
+          var indexNum = getRandomInt(10);
+          var word = word + numberArray[indexNum];
+        } else {
+          var indexNum = getRandomInt(33);
+          var character = specialCharString.charAt(indexNum);
+          if (character === "\!") {
+            var word = word + "\!";
+          } else if (character === "\"") {
+            var word = word + "\"";
+          } else {
+            var word = word + character;
+          }
+        }
+      }
+    } else if (uppercaseChoice && lowercaseChoice) {
       for (i=0; i<passwordLength; i++) {
         var arrayNum = getRandomInt(2);
         if (arrayNum == 0) {
@@ -154,7 +154,7 @@ function generatePassword() {
           var word = word + uppercaseArray[indexNum];
         }
       }
-    } else if (uppercaseDesicion && numberDesicion) {
+    } else if (uppercaseChoice && numberChoice) {
       for (i=0; i<passwordLength; i++) {
         var arrayNum = getRandomInt(2);
         if (arrayNum == 0) {
@@ -165,7 +165,7 @@ function generatePassword() {
           var word = word + numberArray[indexNum];
         }
       }
-    } else if (uppercaseDesicion && specialCharDesicion) {
+    } else if (uppercaseChoice && specialCharChoice) {
       for (i=0; i<passwordLength; i++) {
         var arrayNum = getRandomInt(2);
         if (arrayNum == 0) {
@@ -183,7 +183,7 @@ function generatePassword() {
           }
         }
       }
-    } else if (lowercaseDesicion && numberDesicion) {
+    } else if (lowercaseChoice && numberChoice) {
       for (i=0; i<passwordLength; i++) {
         var arrayNum = getRandomInt(2);
         if (arrayNum == 0) {
@@ -194,7 +194,7 @@ function generatePassword() {
           var word = word + numberArray[indexNum];
         }
       }
-    } else if (lowercaseDesicion && specialCharDesicion) {
+    } else if (lowercaseChoice && specialCharChoice) {
       for (i=0; i<passwordLength; i++) {
         var arrayNum = getRandomInt(2);
         if (arrayNum == 0) {
@@ -212,22 +212,22 @@ function generatePassword() {
           }
         }
       }
-    } else if (uppercaseDesicion) {
+    } else if (uppercaseChoice) {
       for (i=0; i<passwordLength; i++) {
           var indexNum = getRandomInt(25);
           var word = word + uppercaseArray[indexNum];
       }
-    } else if (lowercaseDesicion) {
+    } else if (lowercaseChoice) {
       for (i=0; i<passwordLength; i++) {
           var indexNum = getRandomInt(25);
           var word = word + lowercaseArray[indexNum];
       }
-    } else if (numberDesicion) {
+    } else if (numberChoice) {
       for (i=0; i<passwordLength; i++) {
           var indexNum = getRandomInt(10);
           var word = word + numberArray[indexNum];
       }
-    } else if (specialCharDesicion) {
+    } else if (specialCharChoice) {
       for (i=0; i<passwordLength; i++) {
           var indexNum = getRandomInt(33);
           var character = specialCharString.charAt(indexNum);
@@ -245,7 +245,7 @@ function generatePassword() {
   return word;
 }
 
-// function to generate a random integer
+// Function to generate a random integer
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
