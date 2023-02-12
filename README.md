@@ -10,3 +10,4 @@ SO THAT I can create a strong password that provides greater security
 Link to live website: 
 
 ## Screenshot
+![griffin-woodson github io_password-generator](https://github.com/griffin-woodson/password-generator/blob/15a16e3318a01ee0f11a37184bab80ec223e9a4b/assets/images/pass-gen%20screenshot.png)
